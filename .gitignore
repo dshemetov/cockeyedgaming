@@ -100,3 +100,6 @@ ENV/
 # mypy
 .mypy_cache/
 crunkybot/config.py
+
+#Mac folder info
+.DS_Store
