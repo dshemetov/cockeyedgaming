@@ -1,17 +1,11 @@
-import crunkycfg as cfg
-import utils
-import socket
-import re
-import time, thread
-import sys
-import icescontroller
+import utils, socket, re, time, thread, sys, os
 from time import sleep
-import time
-import sys,os
+import icescontroller
+import config_crunky as cfg
 
 insults = utils.load_insults(cfg.INSULTS)
-stream_start_time=0
-sr_enabled=True
+stream_start_time = 0
+sr_enabled = True
 base_commands = {
     # Text-based commands
     #"!streamote": lambda s,**kw : utils.chat(s,"Join us for Streamline bingo at: http://streamote.tv/cockeyedgaming"),
@@ -46,15 +40,15 @@ base_commands = {
     #"!commands": lambda s,**kw: chat_commands(s)
     }
 
-download_queue=[]
+download_queue = []
 
 def toggle_sr(s,u,m):
     global sr_enabled
     if utils.isOp(u) or u.lower() == "cockeyedgaming":
         if sr_enabled:
-            sr_enabled=False
+            sr_enabled = False
         else:
-            sr_enabled=True
+            sr_enabled = True
 
 def song_request(sock,username,message):
     global download_queue
@@ -65,7 +59,7 @@ def song_request(sock,username,message):
         download_thread=threading.Thread(target=utils.download_song_request,args=[url])
         download_thread.start()
         download_queue.append({'thread':download_thread,'user':username,'vid':url,'vidid':vidid,'title':title})
-                                                                                                                            
+
 def check_download_queue():
     global download_queue
     import sqlite3 as sql
@@ -158,7 +152,7 @@ def main(debug):
             exc_type,exc_obj,exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             print e,exc_type,fname,exc_tb.tb_lineno
-                                            
+
 if __name__ == "__main__":
     import initialize_db as idb
     debug=False
@@ -168,4 +162,3 @@ if __name__ == "__main__":
         if "--initialize-db":
             utils.command_db.init_db("commands.json")
     main(debug)
-    

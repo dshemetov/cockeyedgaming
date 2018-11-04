@@ -99,8 +99,9 @@ ENV/
 
 # mypy
 .mypy_cache/
-crunkybot/config.py
-crunkybot/crunkycfg.py
+crunkybot/config_crunky.py
+crunkybot/twitch/config_crunky.py
+crunkybot/discord/config_discord.py
 
 #Mac folder info
 .DS_Store
