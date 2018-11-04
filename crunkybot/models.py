@@ -8,7 +8,7 @@ class Parameters(db.Model):
 
     def __repr__(self):
         return "<Parameters "+self.param_id+" => "+self.param_value+">"
-    
+
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(128), unique=True)
@@ -32,7 +32,7 @@ class Commands(db.Model):
 
     def __repr__(self):
         return '<Commands %r>' % self.command
-    
+
 class Playlist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     youtube_id= db.Column(db.String(16), nullable=False)
@@ -41,7 +41,7 @@ class Playlist(db.Model):
     user_added= db.Column(db.String(32), nullable=False)
     date_added= db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     num_plays = db.Column(db.Integer, nullable=False, default=0)
-    
+
     def __repr__(self):
         return '<Playlist %r>' % self.youtube_id
 
